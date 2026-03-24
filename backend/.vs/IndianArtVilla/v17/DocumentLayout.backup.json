@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\ArtVillaV1\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{55A231CA-8CFE-4C56-B841-80BFE1BF5C4D}|IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj|c:\\artvillav1\\backend\\indianartvilla.infrastructure\\services\\addressservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A231CA-8CFE-4C56-B841-80BFE1BF5C4D}|IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj|solutionrelative:indianartvilla.infrastructure\\services\\addressservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55A231CA-8CFE-4C56-B841-80BFE1BF5C4D}|IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj|c:\\artvillav1\\backend\\indianartvilla.infrastructure\\data\\inmemorydatastore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A231CA-8CFE-4C56-B841-80BFE1BF5C4D}|IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj|solutionrelative:indianartvilla.infrastructure\\data\\inmemorydatastore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55A231CA-8CFE-4C56-B841-80BFE1BF5C4D}|IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj|c:\\artvillav1\\backend\\indianartvilla.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A231CA-8CFE-4C56-B841-80BFE1BF5C4D}|IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj|solutionrelative:indianartvilla.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B141FD7C-FB2A-42AE-9B84-F398887625E3}|IndianArtVilla.Tests\\IndianArtVilla.Tests.csproj|c:\\artvillav1\\backend\\indianartvilla.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B141FD7C-FB2A-42AE-9B84-F398887625E3}|IndianArtVilla.Tests\\IndianArtVilla.Tests.csproj|solutionrelative:indianartvilla.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E09BF351-A74B-4420-85A6-EB0EEF4EB5B6}|IndianArtVilla.API\\IndianArtVilla.API.csproj|c:\\artvillav1\\backend\\indianartvilla.api\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E09BF351-A74B-4420-85A6-EB0EEF4EB5B6}|IndianArtVilla.API\\IndianArtVilla.API.csproj|solutionrelative:indianartvilla.api\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InMemoryDataStore.cs",
+              "DocumentMoniker": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\Data\\InMemoryDataStore.cs",
+              "RelativeDocumentMoniker": "IndianArtVilla.Infrastructure\\Data\\InMemoryDataStore.cs",
+              "ToolTip": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\Data\\InMemoryDataStore.cs",
+              "RelativeToolTip": "IndianArtVilla.Infrastructure\\Data\\InMemoryDataStore.cs",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T12:31:12.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "IndianArtVilla.Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "IndianArtVilla.Infrastructure\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T12:30:39.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Tests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "IndianArtVilla.Tests\\UnitTest1.cs",
+              "ToolTip": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Tests\\UnitTest1.cs",
+              "RelativeToolTip": "IndianArtVilla.Tests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T08:44:12.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AddressService.cs",
+              "DocumentMoniker": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\Services\\AddressService.cs",
+              "RelativeDocumentMoniker": "IndianArtVilla.Infrastructure\\Services\\AddressService.cs",
+              "ToolTip": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\Services\\AddressService.cs",
+              "RelativeToolTip": "IndianArtVilla.Infrastructure\\Services\\AddressService.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAwwEQAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T08:44:03.463Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\ArtVillaV1\\backend\\IndianArtVilla.API\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "IndianArtVilla.API\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\ArtVillaV1\\backend\\IndianArtVilla.API\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "IndianArtVilla.API\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBgAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T08:37:07.645Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

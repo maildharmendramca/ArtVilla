@@ -1,0 +1,11 @@
+C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.AssemblyInfoInputs.cache
+C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.AssemblyInfo.cs
+C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.csproj.CoreCompileInputs.cache
+C:\ArtVillaV1\backend\IndianArtVilla.Core\bin\Debug\net8.0\IndianArtVilla.Core.deps.json
+C:\ArtVillaV1\backend\IndianArtVilla.Core\bin\Debug\net8.0\IndianArtVilla.Core.dll
+C:\ArtVillaV1\backend\IndianArtVilla.Core\bin\Debug\net8.0\IndianArtVilla.Core.pdb
+C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.dll
+C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\refint\IndianArtVilla.Core.dll
+C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.pdb
+C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\ref\IndianArtVilla.Core.dll

@@ -1,0 +1,9 @@
+export { default as HeroBanner } from './HeroBanner';
+export { default as CollectionSpotlights } from './CollectionSpotlights';
+export { default as FeaturedProducts } from './FeaturedProducts';
+export { default as WhyChooseUs } from './WhyChooseUs';
+export { default as NewArrivals } from './NewArrivals';
+export { default as BestSellers } from './BestSellers';
+export { default as TrendingProducts } from './TrendingProducts';
+export { default as BrandStory } from './BrandStory';
+export { default as Testimonials } from './Testimonials';
