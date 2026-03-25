@@ -120,3 +120,4 @@ C:\ArtVillaV1\backend\IndianArtVilla.API\bin\Debug\net8.0\zh-Hans\Microsoft.Code
 C:\ArtVillaV1\backend\IndianArtVilla.API\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\ArtVillaV1\backend\IndianArtVilla.API\bin\Debug\net8.0\IndianArtVilla.Application.dll
 C:\ArtVillaV1\backend\IndianArtVilla.API\bin\Debug\net8.0\IndianArtVilla.Application.pdb
+C:\ArtVillaV1\backend\IndianArtVilla.API\bin\Debug\net8.0\IndianArtVilla.API.staticwebassets.runtime.json

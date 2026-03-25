@@ -148,9 +148,34 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowFrontend");
 
+app.UseStaticFiles(); // Serve wwwroot/uploads
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// ── File Upload Endpoint ─────────────────────────────────────
+app.MapPost("/api/upload", async (IFormFile file) =>
+{
+    if (file.Length == 0 || file.Length > 5 * 1024 * 1024)
+        return Results.BadRequest(new { success = false, message = "File must be between 1 byte and 5MB." });
+
+    var allowed = new[] { ".jpg", ".jpeg", ".png", ".webp", ".gif" };
+    var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+    if (!allowed.Contains(ext))
+        return Results.BadRequest(new { success = false, message = "Only image files are allowed." });
+
+    var fileName = $"{Guid.NewGuid()}{ext}";
+    var uploadsDir = Path.Combine(app.Environment.WebRootPath, "uploads");
+    Directory.CreateDirectory(uploadsDir);
+
+    var filePath = Path.Combine(uploadsDir, fileName);
+    await using var stream = new FileStream(filePath, FileMode.Create);
+    await file.CopyToAsync(stream);
+
+    var url = $"/uploads/{fileName}";
+    return Results.Ok(new { success = true, data = new { url } });
+}).DisableAntiforgery().RequireAuthorization();
 
 app.Run();

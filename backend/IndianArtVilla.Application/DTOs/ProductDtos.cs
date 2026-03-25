@@ -128,11 +128,20 @@ public class CreateProductDto
     public string? MetaDescription { get; set; }
     public List<string>? Tags { get; set; }
     public List<CreateProductVariantDto>? Variants { get; set; }
+    public List<CreateProductImageDto>? Images { get; set; }
 }
 
 public class UpdateProductDto : CreateProductDto
 {
     public bool IsActive { get; set; } = true;
+}
+
+public class CreateProductImageDto
+{
+    public string Url { get; set; } = string.Empty;
+    public string? Alt { get; set; }
+    public bool IsPrimary { get; set; }
+    public int SortOrder { get; set; }
 }
 
 public class CreateProductVariantDto

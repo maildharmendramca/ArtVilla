@@ -60,7 +60,14 @@
       "Bash(taskkill:*)",
       "Bash(echo:*)",
       "Bash(grep:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(dotnet ef:*)",
+      "Bash(dotnet run:*)",
+      "Bash(node -e \"process.stdin.on\\(''''data'''',d=>console.log\\(JSON.stringify\\(JSON.parse\\(d\\).data,null,2\\)\\)\\)\")",
+      "Bash(tasklist)",
+      "Bash(find C:ArtVillaV1backend -type f -name *ProductService* -o -name *ProductController*)",
+      "Bash(node -e \"process.stdin.on\\(''''data'''',d=>{const r=JSON.parse\\(d\\);console.log\\(''''New Arrivals count:'''',r.data.length\\);r.data.forEach\\(p=>console.log\\('''' -'''',p.id,p.name,p.isFeatured?''''[FEATURED]'''':''''''''\\)\\)}\\)\")",
+      "Bash(node -e \"process.stdin.on\\(''''data'''',d=>{const r=JSON.parse\\(d\\);const p=r.data.find\\(x=>x.id===30\\);console.log\\(JSON.stringify\\(p,null,2\\)\\)}\\)\")"
     ]
   }
 }

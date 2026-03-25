@@ -6,6 +6,7 @@ public interface IProductService
 {
     Task<PagedResult<ProductListDto>> GetProductsAsync(ProductFilterParams filters);
     Task<ProductDetailDto?> GetBySlugAsync(string slug);
+    Task<ProductDetailDto?> GetByIdAsync(int id);
     Task<IEnumerable<ProductListDto>> GetFeaturedAsync(int count = 8);
     Task<IEnumerable<ProductListDto>> GetNewArrivalsAsync(int count = 8);
     Task<IEnumerable<ProductListDto>> GetBestSellersAsync(int count = 8);

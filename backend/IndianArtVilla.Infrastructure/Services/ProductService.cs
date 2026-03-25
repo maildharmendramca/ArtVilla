@@ -103,6 +103,19 @@ public class ProductService : IProductService
         return product == null ? null : MapToDetailDto(product);
     }
 
+    public async Task<ProductDetailDto?> GetByIdAsync(int id)
+    {
+        var product = await _uow.Products.Query()
+            .Include(p => p.Category)
+            .Include(p => p.Images)
+            .Include(p => p.Tags)
+            .Include(p => p.Variants)
+            .Include(p => p.Reviews)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
+        return product == null ? null : MapToDetailDto(product);
+    }
+
     public async Task<IEnumerable<ProductListDto>> GetFeaturedAsync(int count = 8)
     {
         return await _uow.Products.Query()
@@ -223,6 +236,17 @@ public class ProductService : IProductService
             }).ToList();
         }
 
+        if (dto.Images?.Any() == true)
+        {
+            product.Images = dto.Images.Select((img, i) => new ProductImage
+            {
+                ImageUrl = img.Url,
+                AltText = img.Alt ?? dto.Name,
+                IsPrimary = img.IsPrimary,
+                SortOrder = img.SortOrder > 0 ? img.SortOrder : i + 1
+            }).ToList();
+        }
+
         _uow.Products.Add(product);
         await _uow.SaveChangesAsync();
 
@@ -242,6 +266,7 @@ public class ProductService : IProductService
         var product = await _uow.Products.Query()
             .Include(p => p.Tags)
             .Include(p => p.Variants)
+            .Include(p => p.Images)
             .FirstOrDefaultAsync(p => p.Id == id)
             ?? throw new NotFoundException("Product", id);
 
@@ -284,6 +309,19 @@ public class ProductService : IProductService
                 SKU = v.SKU,
                 PriceAdjustment = v.PriceAdjustment,
                 StockQuantity = v.StockQuantity
+            }).ToList();
+        }
+
+        if (dto.Images != null)
+        {
+            _uow.ProductImages.RemoveRange(product.Images);
+            product.Images = dto.Images.Select((img, i) => new ProductImage
+            {
+                ProductId = id,
+                ImageUrl = img.Url,
+                AltText = img.Alt ?? dto.Name,
+                IsPrimary = img.IsPrimary,
+                SortOrder = img.SortOrder > 0 ? img.SortOrder : i + 1
             }).ToList();
         }
 

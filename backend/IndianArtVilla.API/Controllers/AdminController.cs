@@ -84,7 +84,11 @@ public class AdminController : ControllerBase
     [HttpGet("products/{id}")]
     public async Task<ActionResult<ApiResponse<ProductDetailDto>>> GetProductById(int id)
     {
-        return Ok(ApiResponse<ProductDetailDto>.Fail("Use slug-based lookup via /api/products/{slug}"));
+        var product = await _productService.GetByIdAsync(id);
+        if (product is null)
+            return NotFound(ApiResponse<ProductDetailDto>.Fail("Product not found."));
+
+        return Ok(ApiResponse<ProductDetailDto>.Ok(product));
     }
 
     [HttpPut("products/{id}")]

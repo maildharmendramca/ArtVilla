@@ -26,6 +26,11 @@ export async function getAdminProducts(
   return data;
 }
 
+export async function getAdminProduct(id: string): Promise<ApiResponse<any>> {
+  const { data } = await client.get(`/admin/products/${id}`);
+  return data;
+}
+
 export async function createProduct(payload: Partial<Product>): Promise<ApiResponse<Product>> {
   const { data } = await client.post('/admin/products', payload);
   return data;
@@ -73,6 +78,16 @@ export async function updateCategory(id: string, payload: Partial<Category>): Pr
 
 export async function deleteCategory(id: string): Promise<ApiResponse<null>> {
   const { data } = await client.delete(`/admin/categories/${id}`);
+  return data;
+}
+
+// Upload
+export async function uploadImage(file: File): Promise<ApiResponse<{ url: string }>> {
+  const formData = new FormData();
+  formData.append('file', file);
+  const { data } = await client.post('/upload', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
   return data;
 }
 

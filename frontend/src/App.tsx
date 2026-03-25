@@ -15,7 +15,7 @@ import SearchPage from '@/pages/SearchPage';
 import AccountPage from '@/pages/AccountPage';
 
 import { ProfileSection, OrdersSection, AddressesSection, WishlistSection } from '@/components/account';
-import { Dashboard, AdminProducts, AdminOrders, AdminCategories, AdminCustomers } from '@/pages/admin';
+import { Dashboard, AdminProducts, AdminProductForm, AdminOrders, AdminCategories, AdminCustomers } from '@/pages/admin';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,6 +57,8 @@ export default function App() {
             <Route path="admin" element={<AdminLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="products" element={<AdminProducts />} />
+              <Route path="products/new" element={<AdminProductForm />} />
+              <Route path="products/:id/edit" element={<AdminProductForm />} />
               <Route path="orders" element={<AdminOrders />} />
               <Route path="categories" element={<AdminCategories />} />
               <Route path="customers" element={<AdminCustomers />} />

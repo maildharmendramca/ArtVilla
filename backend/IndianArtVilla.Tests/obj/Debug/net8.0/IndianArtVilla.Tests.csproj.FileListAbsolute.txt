@@ -131,3 +131,4 @@ C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\Npgsql.dll
 C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\IndianArtVilla.Application.dll
 C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\IndianArtVilla.Application.pdb
+C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\IndianArtVilla.API.staticwebassets.runtime.json
