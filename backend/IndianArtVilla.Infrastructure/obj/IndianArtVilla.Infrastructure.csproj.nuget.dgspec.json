@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj": {}
+    "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\ArtVillaV1\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj": {
+    "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj",
+        "projectUniqueName": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj",
         "projectName": "IndianArtVilla.Application",
-        "projectPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj",
+        "projectPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj",
         "packagesPath": "C:\\Users\\Dharmendra\\.nuget\\packages\\",
-        "outputPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Application\\obj\\",
+        "outputPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\ArtVillaV1\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj": {
-                "projectPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj"
+              "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj": {
+                "projectPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj"
               }
             }
           }
@@ -73,14 +73,14 @@
         }
       }
     },
-    "C:\\ArtVillaV1\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj": {
+    "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj",
+        "projectUniqueName": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj",
         "projectName": "IndianArtVilla.Core",
-        "projectPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj",
+        "projectPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj",
         "packagesPath": "C:\\Users\\Dharmendra\\.nuget\\packages\\",
-        "outputPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Core\\obj\\",
+        "outputPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -138,14 +138,14 @@
         }
       }
     },
-    "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj": {
+    "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj",
         "projectName": "IndianArtVilla.Infrastructure",
-        "projectPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj",
+        "projectPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Infrastructure\\IndianArtVilla.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Dharmendra\\.nuget\\packages\\",
-        "outputPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Infrastructure\\obj\\",
+        "outputPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -166,11 +166,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\ArtVillaV1\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj": {
-                "projectPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj"
+              "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj": {
+                "projectPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Application\\IndianArtVilla.Application.csproj"
               },
-              "C:\\ArtVillaV1\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj": {
-                "projectPath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj"
+              "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj": {
+                "projectPath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Core\\IndianArtVilla.Core.csproj"
               }
             }
           }

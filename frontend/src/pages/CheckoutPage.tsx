@@ -46,14 +46,14 @@ export default function CheckoutPage() {
     try {
       const res = await createOrder({
         items: items.map((i) => ({
-          productId: i.productId,
-          variantId: i.variantId,
+          productId: String(i.productId),
+          variantId: String(i.variantId),
           quantity: i.quantity,
           giftWrap: i.giftWrap,
           giftMessage: i.giftMessage,
         })),
-        shippingAddressId: selectedAddressId,
-        billingAddressId: selectedAddressId,
+        shippingAddressId: String(selectedAddressId),
+        billingAddressId: String(selectedAddressId),
         paymentMethod,
         couponCode: couponCode ?? undefined,
       });

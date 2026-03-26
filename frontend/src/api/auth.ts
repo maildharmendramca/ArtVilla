@@ -84,7 +84,18 @@ export async function getProfile(): Promise<ApiResponse<User>> {
 
 export async function updateProfile(payload: Partial<User>): Promise<ApiResponse<User>> {
   const { data } = await client.patch('/auth/me', payload);
-  return data;
+  const raw = data.data;
+  return {
+    ...data,
+    data: {
+      id: raw.id,
+      name: raw.fullName ?? raw.name,
+      email: raw.email,
+      phone: raw.phone,
+      role: (raw.roles ?? []).map((r: string) => r.toLowerCase()).includes('admin') ? 'admin' : 'customer',
+      createdAt: raw.createdAt ?? '',
+    },
+  };
 }
 
 export async function changePassword(oldPassword: string, newPassword: string): Promise<ApiResponse<null>> {

@@ -36,7 +36,7 @@ public class AuthService : IAuthService
 
         var user = new ApplicationUser
         {
-            FullName = dto.FullName,
+            FullName = dto.Name,
             Email = dto.Email,
             UserName = dto.Email,
             Phone = dto.Phone,
@@ -133,8 +133,8 @@ public class AuthService : IAuthService
         var user = await _userManager.FindByIdAsync(userId)
             ?? throw new NotFoundException("User", userId);
 
-        if (!string.IsNullOrWhiteSpace(dto.FullName))
-            user.FullName = dto.FullName;
+        if (!string.IsNullOrWhiteSpace(dto.Name))
+            user.FullName = dto.Name;
         if (dto.Phone is not null)
             user.Phone = dto.Phone;
 
@@ -213,6 +213,15 @@ public class AuthService : IAuthService
             IsActive = user.IsActive,
             OrderCount = orderCount
         };
+    }
+
+    public async Task ToggleActiveAsync(string id)
+    {
+        var user = await _userManager.FindByIdAsync(id)
+            ?? throw new NotFoundException("Customer", id);
+
+        user.IsActive = !user.IsActive;
+        await _userManager.UpdateAsync(user);
     }
 
     // ── Private helpers ──────────────────────────────────────────

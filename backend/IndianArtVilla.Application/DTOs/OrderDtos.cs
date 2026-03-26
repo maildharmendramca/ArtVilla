@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using IndianArtVilla.Core.Enums;
 
 namespace IndianArtVilla.Application.DTOs;
@@ -7,7 +8,10 @@ public class OrderListDto
     public int Id { get; set; }
     public string OrderNumber { get; set; } = string.Empty;
     public OrderStatus Status { get; set; }
+
+    [JsonPropertyName("total")]
     public decimal TotalAmount { get; set; }
+
     public int ItemCount { get; set; }
     public PaymentStatus PaymentStatus { get; set; }
     public DateTime CreatedAt { get; set; }
@@ -64,12 +68,22 @@ public class OrderStatusHistoryDto
 
 public class CheckoutRequestDto
 {
+    public List<CheckoutItemDto> Items { get; set; } = new();
     public int ShippingAddressId { get; set; }
     public string? Notes { get; set; }
     public bool IsGiftOrder { get; set; }
     public string? GiftMessage { get; set; }
     public string PaymentMethod { get; set; } = string.Empty;
     public string? CouponCode { get; set; }
+}
+
+public class CheckoutItemDto
+{
+    public int ProductId { get; set; }
+    public int? VariantId { get; set; }
+    public int Quantity { get; set; }
+    public bool GiftWrap { get; set; }
+    public string? GiftMessage { get; set; }
 }
 
 public class UpdateOrderStatusDto
@@ -131,15 +145,21 @@ public class CreateReviewDto
 
 public class DashboardStatsDto
 {
-    public decimal TodayRevenue { get; set; }
-    public decimal MonthlyRevenue { get; set; }
-    public int TotalOrdersToday { get; set; }
-    public int PendingOrders { get; set; }
-    public int TotalProducts { get; set; }
-    public int LowStockProducts { get; set; }
+    public decimal TotalRevenue { get; set; }
+    public int TotalOrders { get; set; }
     public int TotalCustomers { get; set; }
-    public List<RevenueDataPoint> RevenueChart { get; set; } = new();
+    public int TotalProducts { get; set; }
+    public decimal RevenueChange { get; set; }
+    public decimal OrdersChange { get; set; }
+    public List<OrderListDto> RecentOrders { get; set; } = new();
     public List<TopProductDto> TopProducts { get; set; } = new();
+    public List<RevenueByMonthDto> RevenueByMonth { get; set; } = new();
+}
+
+public class RevenueByMonthDto
+{
+    public string Month { get; set; } = string.Empty;
+    public decimal Revenue { get; set; }
 }
 
 public class RevenueDataPoint
@@ -151,9 +171,7 @@ public class RevenueDataPoint
 
 public class TopProductDto
 {
-    public int ProductId { get; set; }
-    public string ProductName { get; set; } = string.Empty;
-    public string? ImageUrl { get; set; }
-    public int TotalSold { get; set; }
-    public decimal TotalRevenue { get; set; }
+    public ProductListDto Product { get; set; } = null!;
+    public int SoldCount { get; set; }
+    public decimal Revenue { get; set; }
 }

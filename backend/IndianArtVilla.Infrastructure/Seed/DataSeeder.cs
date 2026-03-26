@@ -40,7 +40,7 @@ public static class DataSeeder
     private static async Task SeedUsersAsync(UserManager<ApplicationUser> userManager)
     {
         // Admin user
-        const string adminEmail = "admin@indianartvilla.in";
+        const string adminEmail = "admin@testmail.com";
         if (await userManager.FindByEmailAsync(adminEmail) == null)
         {
             var admin = new ApplicationUser
@@ -59,25 +59,6 @@ public static class DataSeeder
                 await userManager.AddToRoleAsync(admin, "Admin");
         }
 
-        // Customer user
-        const string customerEmail = "rahul@example.com";
-        if (await userManager.FindByEmailAsync(customerEmail) == null)
-        {
-            var customer = new ApplicationUser
-            {
-                FullName = "Rahul Sharma",
-                Email = customerEmail,
-                UserName = customerEmail,
-                Phone = "+919876543211",
-                EmailConfirmed = true,
-                IsActive = true,
-                CreatedAt = DateTime.UtcNow
-            };
-
-            var result = await userManager.CreateAsync(customer, "Customer@123");
-            if (result.Succeeded)
-                await userManager.AddToRoleAsync(customer, "Customer");
-        }
     }
 
     private static async Task SeedCategoriesAsync(AppDbContext db)

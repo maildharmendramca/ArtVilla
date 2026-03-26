@@ -14,4 +14,5 @@ public interface IAuthService
     Task ChangePasswordAsync(string userId, ChangePasswordDto dto);
     Task<PagedResult<CustomerDto>> GetCustomersAsync(int page, int pageSize);
     Task<CustomerDto?> GetCustomerAsync(string id);
+    Task ToggleActiveAsync(string id);
 }

@@ -132,3 +132,6 @@ C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\Npgsql.EntityFramewo
 C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\IndianArtVilla.Application.dll
 C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\IndianArtVilla.Application.pdb
 C:\ArtVillaV1\backend\IndianArtVilla.Tests\bin\Debug\net8.0\IndianArtVilla.API.staticwebassets.runtime.json
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Tests\obj\Debug\net8.0\IndianArtVilla.Tests.dll
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Tests\obj\Debug\net8.0\refint\IndianArtVilla.Tests.dll
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Tests\obj\Debug\net8.0\IndianArtVilla.Tests.pdb

@@ -105,3 +105,8 @@ export async function getCustomerById(id: string): Promise<ApiResponse<User>> {
   const { data } = await client.get(`/admin/customers/${id}`);
   return data;
 }
+
+export async function toggleCustomerActive(id: string): Promise<ApiResponse<string>> {
+  const { data } = await client.patch(`/admin/customers/${id}/toggle-active`);
+  return data;
+}

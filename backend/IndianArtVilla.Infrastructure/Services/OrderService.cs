@@ -23,16 +23,7 @@ public class OrderService : IOrderService
 
     public async Task<OrderDetailDto> CreateOrderAsync(CheckoutRequestDto request, string userId)
     {
-        var cart = await _uow.Carts.Query()
-            .Include(c => c.Items)
-                .ThenInclude(ci => ci.Product)
-                    .ThenInclude(p => p.Images)
-            .Include(c => c.Items)
-                .ThenInclude(ci => ci.Variant)
-            .FirstOrDefaultAsync(c => c.UserId == userId)
-            ?? throw new BusinessRuleViolationException("Cart is empty.");
-
-        if (!cart.Items.Any())
+        if (request.Items == null || !request.Items.Any())
             throw new BusinessRuleViolationException("Cart is empty.");
 
         var address = await _uow.Addresses.FirstOrDefaultAsync(a => a.Id == request.ShippingAddressId)
@@ -46,30 +37,38 @@ public class OrderService : IOrderService
         decimal subTotal = 0;
         var orderItems = new List<OrderItem>();
 
-        foreach (var ci in cart.Items)
+        foreach (var item in request.Items)
         {
-            var unitPrice = ci.Product.Price + (ci.Variant?.PriceAdjustment ?? 0);
-            var totalPrice = unitPrice * ci.Quantity;
+            var product = await _uow.Products.Query()
+                .Include(p => p.Variants)
+                .Include(p => p.Images)
+                .FirstOrDefaultAsync(p => p.Id == item.ProductId)
+                ?? throw new NotFoundException("Product", item.ProductId);
+
+            var variant = item.VariantId.HasValue
+                ? product.Variants.FirstOrDefault(v => v.Id == item.VariantId.Value)
+                : product.Variants.FirstOrDefault();
+
+            var unitPrice = product.Price + (variant?.PriceAdjustment ?? 0);
+            var totalPrice = unitPrice * item.Quantity;
             subTotal += totalPrice;
 
             var orderItem = new OrderItem
             {
-                ProductId = ci.ProductId,
-                ProductVariantId = ci.ProductVariantId,
-                ProductName = ci.Product.Name,
-                VariantName = ci.Variant?.Name,
-                ProductSKU = ci.Variant?.SKU ?? ci.Product.SKU,
+                ProductId = product.Id,
+                ProductVariantId = variant?.Id,
+                ProductName = product.Name,
+                VariantName = variant?.Name,
+                ProductSKU = variant?.SKU ?? product.SKU,
                 UnitPrice = unitPrice,
-                Quantity = ci.Quantity,
+                Quantity = item.Quantity,
                 TotalPrice = totalPrice,
-                IsGiftWrapped = ci.IsGiftWrapped,
-                GiftMessage = ci.GiftMessage
+                IsGiftWrapped = item.GiftWrap,
+                GiftMessage = item.GiftMessage
             };
 
             orderItems.Add(orderItem);
-
-            // Use domain method for stock deduction
-            ci.Product.DeductStock(ci.Quantity);
+            product.DeductStock(item.Quantity);
         }
 
         decimal shippingAmount = subTotal >= 999 ? 0 : 99;
@@ -126,11 +125,6 @@ public class OrderService : IOrderService
         };
 
         _uow.Orders.Add(order);
-
-        // Clear cart
-        _uow.CartItems.RemoveRange(cart.Items);
-        _uow.Carts.Remove(cart);
-
         await _uow.SaveChangesAsync();
 
         var savedOrder = await LoadOrderWithNavigationAsync(order.Id);

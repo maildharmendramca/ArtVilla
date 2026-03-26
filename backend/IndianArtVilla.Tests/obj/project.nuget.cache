@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VrVVhcyp+AA=",
+  "dgSpecHash": "b0E+sWL0hRM=",
   "success": true,
-  "projectFilePath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.Tests\\IndianArtVilla.Tests.csproj",
+  "projectFilePath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.Tests\\IndianArtVilla.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dharmendra\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\Dharmendra\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",

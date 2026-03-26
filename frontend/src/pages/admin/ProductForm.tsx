@@ -140,8 +140,8 @@ export default function ProductForm() {
         variants: existingData.variants?.map((v: any) => ({
           name: v.name,
           sku: v.sku ?? '',
-          priceAdjustment: v.priceAdjustment ?? v.price ?? 0,
-          stockQuantity: v.stockQuantity ?? v.stock ?? 0,
+          priceAdjustment: v.priceAdjustment ?? 0,
+          stockQuantity: v.stock ?? v.stockQuantity ?? 0,
         })) ?? [],
       });
     }

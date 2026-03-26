@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IndianArtVilla.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d2a7cf0c51048ffa7d8fc67f90bf4c9a2302883")]
 [assembly: System.Reflection.AssemblyProductAttribute("IndianArtVilla.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IndianArtVilla.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

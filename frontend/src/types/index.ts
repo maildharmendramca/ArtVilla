@@ -33,6 +33,7 @@ export interface Product {
   compareAtPrice?: number;
   averageRating: number;
   reviewCount: number;
+  stockQuantity: number;
   tags: string[];
   material?: string;
   isFeatured: boolean;

@@ -1,8 +1,10 @@
+using System.Text.Json.Serialization;
+
 namespace IndianArtVilla.Application.DTOs;
 
 public class RegisterDto
 {
-    public string FullName { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public string? Phone { get; set; }
@@ -48,7 +50,7 @@ public class RefreshTokenDto
 
 public class UpdateProfileDto
 {
-    public string? FullName { get; set; }
+    public string? Name { get; set; }
     public string? Phone { get; set; }
 }
 
@@ -61,6 +63,8 @@ public class ChangePasswordDto
 public class CustomerDto
 {
     public string Id { get; set; } = string.Empty;
+
+    [JsonPropertyName("name")]
     public string FullName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string? Phone { get; set; }

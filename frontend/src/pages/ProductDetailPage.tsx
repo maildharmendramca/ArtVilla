@@ -47,7 +47,10 @@ export default function ProductDetailPage() {
   if (isLoading) return <Spinner className="py-32" size="lg" />;
   if (!product) return <div className="py-32 text-center text-muted">Product not found</div>;
 
-  const variant = product.variants[selectedVariant];
+  // Fallback to a synthetic variant when the product has none (legacy data)
+  const variant = product.variants[selectedVariant] ?? (product.variants.length === 0
+    ? { id: `${product.id}-default`, name: 'Default', price: product.basePrice, compareAtPrice: product.compareAtPrice, stock: product.stockQuantity }
+    : undefined);
   const discount = variant?.compareAtPrice
     ? getDiscountPercentage(variant.price, variant.compareAtPrice)
     : 0;

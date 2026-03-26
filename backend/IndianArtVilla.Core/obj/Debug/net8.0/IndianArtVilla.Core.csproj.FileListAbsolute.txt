@@ -9,3 +9,15 @@ C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.d
 C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\refint\IndianArtVilla.Core.dll
 C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.pdb
 C:\ArtVillaV1\backend\IndianArtVilla.Core\obj\Debug\net8.0\ref\IndianArtVilla.Core.dll
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\bin\Debug\net8.0\IndianArtVilla.Core.deps.json
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\bin\Debug\net8.0\IndianArtVilla.Core.dll
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\bin\Debug\net8.0\IndianArtVilla.Core.pdb
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.AssemblyInfoInputs.cache
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.AssemblyInfo.cs
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.csproj.CoreCompileInputs.cache
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.sourcelink.json
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.dll
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\refint\IndianArtVilla.Core.dll
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\IndianArtVilla.Core.pdb
+D:\Git-Bash\ArtVilla\backend\IndianArtVilla.Core\obj\Debug\net8.0\ref\IndianArtVilla.Core.dll

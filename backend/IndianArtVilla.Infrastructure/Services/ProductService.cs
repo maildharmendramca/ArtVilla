@@ -235,6 +235,20 @@ public class ProductService : IProductService
                 StockQuantity = v.StockQuantity
             }).ToList();
         }
+        else
+        {
+            // Auto-create a default variant so the product can be added to cart
+            product.Variants = new List<ProductVariant>
+            {
+                new ProductVariant
+                {
+                    Name = "Default",
+                    SKU = dto.SKU,
+                    PriceAdjustment = 0,
+                    StockQuantity = dto.StockQuantity
+                }
+            };
+        }
 
         if (dto.Images?.Any() == true)
         {
@@ -310,6 +324,21 @@ public class ProductService : IProductService
                 PriceAdjustment = v.PriceAdjustment,
                 StockQuantity = v.StockQuantity
             }).ToList();
+        }
+        else
+        {
+            // Auto-create a default variant so the product can be added to cart
+            product.Variants = new List<ProductVariant>
+            {
+                new ProductVariant
+                {
+                    ProductId = id,
+                    Name = "Default",
+                    SKU = dto.SKU,
+                    PriceAdjustment = 0,
+                    StockQuantity = dto.StockQuantity
+                }
+            };
         }
 
         if (dto.Images != null)
@@ -428,16 +457,31 @@ public class ProductService : IProductService
             IsPrimary = i.IsPrimary,
             SortOrder = i.SortOrder
         }).ToList(),
-        Variants = p.Variants.Select(v => new ProductVariantDto
-        {
-            Id = v.Id,
-            Name = v.Name,
-            SKU = v.SKU,
-            Price = p.Price + v.PriceAdjustment,
-            CompareAtPrice = p.CompareAtPrice,
-            StockQuantity = v.StockQuantity,
-            ImageUrl = v.ImageUrl
-        }).ToList(),
+        Variants = p.Variants.Any()
+            ? p.Variants.Select(v => new ProductVariantDto
+            {
+                Id = v.Id,
+                Name = v.Name,
+                SKU = v.SKU,
+                Price = p.Price + v.PriceAdjustment,
+                PriceAdjustment = v.PriceAdjustment,
+                CompareAtPrice = p.CompareAtPrice,
+                StockQuantity = v.StockQuantity,
+                ImageUrl = v.ImageUrl
+            }).ToList()
+            : new List<ProductVariantDto>
+            {
+                new ProductVariantDto
+                {
+                    Id = 0,
+                    Name = "Default",
+                    SKU = p.SKU,
+                    Price = p.Price,
+                    PriceAdjustment = 0,
+                    CompareAtPrice = p.CompareAtPrice,
+                    StockQuantity = p.StockQuantity
+                }
+            },
         Tags = p.Tags.Select(t => t.Tag).ToList(),
         MetaTitle = p.MetaTitle,
         MetaDescription = p.MetaDescription,

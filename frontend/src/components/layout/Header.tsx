@@ -87,14 +87,14 @@ export default function Header() {
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                <span className="hidden xl:inline">{user?.name?.split(' ')[0]}</span>
+                <span>{user?.name?.split(' ')[0]}</span>
               </Link>
             ) : (
               <Link to="/login" className="hidden lg:flex items-center gap-1 text-sm text-dark hover:text-copper transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                <span className="hidden xl:inline">Sign In</span>
+                <span>Sign In</span>
               </Link>
             )}
 
@@ -174,7 +174,19 @@ export default function Header() {
               Admin Panel
             </Link>
           )}
-          {!isAuthenticated && (
+          {isAuthenticated ? (
+            <>
+              <Link to="/account" className="block text-sm font-medium text-dark py-2" onClick={() => useUiStore.getState().setMobileMenuOpen(false)}>
+                My Account ({user?.name?.split(' ')[0] || 'Profile'})
+              </Link>
+              <button
+                onClick={() => { useAuthStore.getState().logout(); useUiStore.getState().setMobileMenuOpen(false); navigate('/'); }}
+                className="block text-sm font-medium text-red-600 py-2"
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
             <Link to="/login" className="block text-sm font-medium text-copper py-2" onClick={() => useUiStore.getState().setMobileMenuOpen(false)}>
               Sign In / Register
             </Link>

@@ -21,41 +21,71 @@ public class DashboardService : IDashboardService
 
     public async Task<DashboardStatsDto> GetStatsAsync()
     {
-        var today = DateTime.UtcNow.Date;
-        var monthStart = new DateTime(today.Year, today.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+        var now = DateTime.UtcNow;
+        var thisMonthStart = new DateTime(now.Year, now.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+        var lastMonthStart = thisMonthStart.AddMonths(-1);
 
-        var todayOrders = await _uow.Orders.Query()
-            .Where(o => o.CreatedAt >= today && o.Status != OrderStatus.Cancelled)
+        // Current month stats
+        var thisMonthOrders = await _uow.Orders.Query()
+            .Where(o => o.CreatedAt >= thisMonthStart && o.Status != OrderStatus.Cancelled)
             .ToListAsync();
 
-        var monthlyRevenue = await _uow.Orders.Query()
-            .Where(o => o.CreatedAt >= monthStart && o.Status != OrderStatus.Cancelled)
+        // Last month stats (for change percentage)
+        var lastMonthOrders = await _uow.Orders.Query()
+            .Where(o => o.CreatedAt >= lastMonthStart && o.CreatedAt < thisMonthStart && o.Status != OrderStatus.Cancelled)
+            .ToListAsync();
+
+        var thisMonthRevenue = thisMonthOrders.Sum(o => o.TotalAmount);
+        var lastMonthRevenue = lastMonthOrders.Sum(o => o.TotalAmount);
+
+        var totalOrders = await _uow.Orders.CountAsync(o => o.Status != OrderStatus.Cancelled);
+        var totalProducts = await _uow.Products.CountAsync(p => p.IsActive);
+        var totalCustomers = _userManager.Users.Count();
+        var totalRevenue = await _uow.Orders.Query()
+            .Where(o => o.Status != OrderStatus.Cancelled)
             .SumAsync(o => o.TotalAmount);
 
-        var pendingOrders = await _uow.Orders
-            .CountAsync(o => o.Status == OrderStatus.Pending);
+        // Percentage changes
+        var revenueChange = lastMonthRevenue > 0
+            ? Math.Round((thisMonthRevenue - lastMonthRevenue) / lastMonthRevenue * 100, 1)
+            : 0;
+        var ordersChange = lastMonthOrders.Count > 0
+            ? Math.Round((decimal)(thisMonthOrders.Count - lastMonthOrders.Count) / lastMonthOrders.Count * 100, 1)
+            : 0;
 
-        var totalProducts = await _uow.Products.CountAsync(p => p.IsActive);
+        // Recent orders
+        var recentOrders = await _uow.Orders.Query()
+            .OrderByDescending(o => o.CreatedAt)
+            .Take(5)
+            .Select(o => new OrderListDto
+            {
+                Id = o.Id,
+                OrderNumber = o.OrderNumber,
+                Status = o.Status,
+                TotalAmount = o.TotalAmount,
+                ItemCount = o.Items.Count,
+                PaymentStatus = o.PaymentStatus,
+                CreatedAt = o.CreatedAt
+            })
+            .ToListAsync();
 
-        var lowStockProducts = await _uow.Products
-            .CountAsync(p => p.IsActive && p.TrackInventory && p.StockQuantity <= 5);
+        // Top products
+        var topProducts = await GetTopProductsInternalAsync(5);
 
-        var totalCustomers = _userManager.Users.Count();
-
-        var revenueChart = await GetRevenueChartInternalAsync(30);
-        var topProducts = await GetTopProductsInternalAsync(10);
+        // Revenue by month (last 6 months)
+        var revenueByMonth = await GetRevenueByMonthAsync(6);
 
         return new DashboardStatsDto
         {
-            TodayRevenue = todayOrders.Sum(o => o.TotalAmount),
-            MonthlyRevenue = monthlyRevenue,
-            TotalOrdersToday = todayOrders.Count,
-            PendingOrders = pendingOrders,
-            TotalProducts = totalProducts,
-            LowStockProducts = lowStockProducts,
+            TotalRevenue = totalRevenue,
+            TotalOrders = totalOrders,
             TotalCustomers = totalCustomers,
-            RevenueChart = revenueChart,
-            TopProducts = topProducts
+            TotalProducts = totalProducts,
+            RevenueChange = revenueChange,
+            OrdersChange = ordersChange,
+            RecentOrders = recentOrders,
+            TopProducts = topProducts,
+            RevenueByMonth = revenueByMonth
         };
     }
 
@@ -67,6 +97,31 @@ public class DashboardService : IDashboardService
     public async Task<IEnumerable<TopProductDto>> GetTopProductsAsync(int count = 10)
     {
         return await GetTopProductsInternalAsync(count);
+    }
+
+    private async Task<List<RevenueByMonthDto>> GetRevenueByMonthAsync(int months)
+    {
+        var result = new List<RevenueByMonthDto>();
+        var now = DateTime.UtcNow;
+
+        for (int i = months - 1; i >= 0; i--)
+        {
+            var monthDate = now.AddMonths(-i);
+            var monthStart = new DateTime(monthDate.Year, monthDate.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+            var monthEnd = monthStart.AddMonths(1);
+
+            var revenue = await _uow.Orders.Query()
+                .Where(o => o.CreatedAt >= monthStart && o.CreatedAt < monthEnd && o.Status != OrderStatus.Cancelled)
+                .SumAsync(o => o.TotalAmount);
+
+            result.Add(new RevenueByMonthDto
+            {
+                Month = monthStart.ToString("MMM yyyy"),
+                Revenue = revenue
+            });
+        }
+
+        return result;
     }
 
     private async Task<List<RevenueDataPoint>> GetRevenueChartInternalAsync(int days)
@@ -98,23 +153,40 @@ public class DashboardService : IDashboardService
 
     private async Task<List<TopProductDto>> GetTopProductsInternalAsync(int count)
     {
-        return await _uow.OrderItems.Query()
+        var topItems = await _uow.OrderItems.Query()
             .Include(oi => oi.Order)
+            .Include(oi => oi.Product).ThenInclude(p => p.Category)
             .Include(oi => oi.Product).ThenInclude(p => p.Images)
+            .Include(oi => oi.Product).ThenInclude(p => p.Reviews)
             .Where(oi => oi.Order.Status != OrderStatus.Cancelled)
-            .GroupBy(oi => new { oi.ProductId, oi.Product.Name })
-            .Select(g => new TopProductDto
+            .GroupBy(oi => oi.ProductId)
+            .Select(g => new
             {
-                ProductId = g.Key.ProductId,
-                ProductName = g.Key.Name,
-                ImageUrl = g.First().Product.Images
-                    .Where(i => i.IsPrimary).Select(i => i.ImageUrl).FirstOrDefault()
-                    ?? g.First().Product.Images.Select(i => i.ImageUrl).FirstOrDefault(),
+                ProductId = g.Key,
                 TotalSold = g.Sum(oi => oi.Quantity),
                 TotalRevenue = g.Sum(oi => oi.TotalPrice)
             })
             .OrderByDescending(t => t.TotalSold)
             .Take(count)
             .ToListAsync();
+
+        var productIds = topItems.Select(t => t.ProductId).ToList();
+        var products = await _uow.Products.Query()
+            .Include(p => p.Category)
+            .Include(p => p.Images)
+            .Include(p => p.Reviews)
+            .Where(p => productIds.Contains(p.Id))
+            .ToListAsync();
+
+        return topItems.Select(t =>
+        {
+            var p = products.First(p => p.Id == t.ProductId);
+            return new TopProductDto
+            {
+                Product = ProductService.MapToListDto(p),
+                SoldCount = t.TotalSold,
+                Revenue = t.TotalRevenue
+            };
+        }).ToList();
     }
 }

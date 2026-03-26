@@ -1,16 +1,27 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getCustomers } from '@/api/admin';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import { getCustomers, toggleCustomerActive } from '@/api/admin';
 import { formatDate } from '@/utils/format';
-import { Spinner } from '@/components/common';
+import { Spinner, Badge } from '@/components/common';
 
 export default function AdminCustomers() {
+  const queryClient = useQueryClient();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
   const { data, isLoading } = useQuery({
     queryKey: ['admin', 'customers', page, search],
     queryFn: () => getCustomers(page, 20, search || undefined),
+  });
+
+  const toggleActive = useMutation({
+    mutationFn: (id: string) => toggleCustomerActive(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin', 'customers'] });
+      toast.success('Customer status updated');
+    },
+    onError: () => toast.error('Failed to update status'),
   });
 
   const customers = data?.data ?? [];
@@ -43,15 +54,17 @@ export default function AdminCustomers() {
                 <th className="px-4 py-3 text-muted font-medium">Email</th>
                 <th className="px-4 py-3 text-muted font-medium">Phone</th>
                 <th className="px-4 py-3 text-muted font-medium">Joined</th>
+                <th className="px-4 py-3 text-muted font-medium">Status</th>
+                <th className="px-4 py-3 text-muted font-medium">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {customers.map((customer) => (
+              {customers.map((customer: any) => (
                 <tr key={customer.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-copper text-white flex items-center justify-center text-xs font-medium shrink-0">
-                        {customer.name.charAt(0).toUpperCase()}
+                        {customer.name?.charAt(0).toUpperCase() ?? '?'}
                       </div>
                       <span className="font-medium text-dark">{customer.name}</span>
                     </div>
@@ -59,6 +72,24 @@ export default function AdminCustomers() {
                   <td className="px-4 py-3 text-muted">{customer.email}</td>
                   <td className="px-4 py-3 text-muted">{customer.phone || '-'}</td>
                   <td className="px-4 py-3 text-muted">{formatDate(customer.createdAt)}</td>
+                  <td className="px-4 py-3">
+                    <Badge variant={customer.isActive ? 'success' : 'danger'}>
+                      {customer.isActive ? 'Active' : 'Inactive'}
+                    </Badge>
+                  </td>
+                  <td className="px-4 py-3">
+                    <button
+                      onClick={() => toggleActive.mutate(customer.id)}
+                      disabled={toggleActive.isPending}
+                      className={`text-xs font-medium px-3 py-1.5 rounded-lg border transition-colors ${
+                        customer.isActive
+                          ? 'border-red-200 text-red-600 hover:bg-red-50'
+                          : 'border-green-200 text-green-600 hover:bg-green-50'
+                      } disabled:opacity-50`}
+                    >
+                      {customer.isActive ? 'Deactivate' : 'Activate'}
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

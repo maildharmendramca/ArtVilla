@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wEI/30eVP80=",
+  "dgSpecHash": "E6p1Yd6maPE=",
   "success": true,
-  "projectFilePath": "C:\\ArtVillaV1\\backend\\IndianArtVilla.API\\IndianArtVilla.API.csproj",
+  "projectFilePath": "D:\\Git-Bash\\ArtVilla\\backend\\IndianArtVilla.API\\IndianArtVilla.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dharmendra\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Dharmendra\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",

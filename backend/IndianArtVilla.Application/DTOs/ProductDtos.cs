@@ -96,6 +96,8 @@ public class ProductVariantDto
     [JsonPropertyName("price")]
     public decimal Price { get; set; }
 
+    public decimal PriceAdjustment { get; set; }
+
     public decimal? CompareAtPrice { get; set; }
 
     [JsonPropertyName("stock")]

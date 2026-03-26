@@ -47,7 +47,7 @@ export default function OrdersSection() {
               <Badge variant={statusBadge[order.status]}>{order.status}</Badge>
             </div>
             <div className="flex items-center justify-between">
-              <p className="text-sm text-muted">{order.items.length} item(s)</p>
+              <p className="text-sm text-muted">{(order as any).itemCount ?? order.items?.length ?? 0} item(s)</p>
               <p className="font-semibold text-dark">{formatCurrency(order.total)}</p>
             </div>
           </div>

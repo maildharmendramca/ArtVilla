@@ -69,7 +69,7 @@ export default function AdminOrders() {
                 <tr key={order.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium text-dark">{order.orderNumber}</td>
                   <td className="px-4 py-3 text-muted">{formatDate(order.createdAt)}</td>
-                  <td className="px-4 py-3 text-muted">{order.items.length}</td>
+                  <td className="px-4 py-3 text-muted">{(order as any).itemCount ?? order.items?.length ?? 0}</td>
                   <td className="px-4 py-3 font-medium">{formatCurrency(order.total)}</td>
                   <td className="px-4 py-3">
                     <Badge variant={statusVariant[order.status]}>{order.status}</Badge>

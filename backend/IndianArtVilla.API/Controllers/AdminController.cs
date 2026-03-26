@@ -199,4 +199,11 @@ public class AdminController : ControllerBase
 
         return Ok(ApiResponse<CustomerDto>.Ok(customer));
     }
+
+    [HttpPatch("customers/{id}/toggle-active")]
+    public async Task<ActionResult<ApiResponse<string>>> ToggleCustomerActive(string id)
+    {
+        await _authService.ToggleActiveAsync(id);
+        return Ok(ApiResponse<string>.Ok("Customer status updated."));
+    }
 }
